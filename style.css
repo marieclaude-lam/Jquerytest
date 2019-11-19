@@ -7,13 +7,13 @@ ul,ol{
 }
 body{
     background: #bfbfbf url('images/background.jpg') repeat-x;
-    font-family: arial, sans-serif;
+    font-family: Limelight, sans-serif;
 }
 header{
     padding: 30px 0;
 }
 header h1{
-    font-size:30px;
+    font-size:40px;
     text-align: center;
     color: #fff;
     text-transform: uppercase;
@@ -26,13 +26,19 @@ header h1{
     width:980px;
     height: 500px;
     margin: 0 auto;
-    padding-top: 148px;
+    padding-top: 178px;
 }
 #main-menu ul li{
-
+    float:left;
+    width:140px;
+    height:500px;
+    overflow:hidden;
+    position: relative;
 }
 
 .bw{
+    position:absolute;
+    left:0px;
     width:140px;
     height:500px;
     cursor: pointer;
@@ -40,6 +46,8 @@ header h1{
     opacity: 0.7;
 }
 .color{
+    position:absolute;
+    left:140px;
     width:140px;
     height:500px;
     cursor: pointer;
@@ -58,6 +66,8 @@ header h1{
     background-position: -560px 0px;
 }
 .description{
+    position:absolute;
+    left:140px;
     width:240px;
     height:460px;
     padding:20px;
@@ -69,26 +79,29 @@ header h1{
     text-align: center;
     color: #333;
     text-transform: uppercase;
+    font-family: Limelight, sans-serif;
+
 }
 .description h3
 {
     margin-top:30px;
-    paddinf:10px;
+    padding:10px;
     font-size:26px;
+    font-family: 'Lobster', sans-serif;
     background: #d70000;
     color: #fff;
     text-align:center;
     text-shadow:1px 1px 1px #000;
     border-radius: 5px;
+
 }
 .description p{
     padding-top: 35px;
-    font)size:22px;
+    font-size:22px;
+    font-family:'Lobster', sans-serif;
     color:#000;
     text-align:center;
 }
-
-
 
 
 
