@@ -12,21 +12,29 @@ $(function(){
 //item = li sur lequel on a cliqué,
 //c'est à partir de $mainMenuItems qui répertorie tous mes li
 //grace à eq il va sélectionner l'index du li cliqué (correspondant à newIndex)
-                $item = $mainMenuItems.eq(newIndex),
-//Je veux l'image coloré: trouve la class .color parmis les descendants dans mon li cliqué ($item)
-                $colorImage = $item.find(".color");
-//je veux faire apparaitre l'image coloré à place du b&w.
-//pour le moment l'image colorée est à 140px dans le css
-//on va la mettre à 0px pour la faire apparaitre
-                $colorImage.animate({left:"0px"},250);
-//Je veux ouvrir la description dont left est aussi à 140px (css)
-//et son li a aussi pour largeur de 140px c'est pour ça que l'on a que l'image
-//il faut donc augmenter la largeur du li qui est stocké dans $item
-                $item.animate({width:"420px"},250);
+                $item = $mainMenuItems.eq(newIndex);
+                animateItem($item, true, 250);
 //mise à jour de la var openIndex
                 openedIndex =newIndex;
 
             });
+
+        };
+//ouverture de la description
+//l'item que je veux animer, toOpen=bool, la vitesse
+        animateItem =function($item, toOpen, speed){
+
+            var $colorImage = $item.find(".color"),
+//toOpen est-il true or false; expression ? Valeur1 (si true) :Valeur2(si false)
+//itemParam soit = à width 420px (true) width 140px(false)
+            itemParam = toOpen ?{width:"420px"}: {width:"140px"},
+// quand on ouvre l'img coloré sera à 0px  sinon à 140px (dc disparait à droite)
+            colorImageParam =toOpen ? {left:"0px"} :{left:"140px"};
+
+
+
+            $colorImage.animate(colorImageParam,speed);
+            $item.animate(itemParam,speed);
 
         };
 
