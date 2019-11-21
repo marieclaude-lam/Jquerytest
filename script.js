@@ -40,7 +40,38 @@ $(function(){
                     }
                 }
             });
-        }
+            $(".button").hover(
+                function(){
+                    $(this).addClass("hovered");
+            },
+                function(){
+                    $(this).removeClass("hovered");
+            }
+            );
+
+            $(".button").click(function(){
+                var newIndex = $(this).index();
+                //item = li sur lequel on a cliqué,
+                //c'est à partir de $mainMenuItems qui répertorie tous mes li
+                //grace à eq il va sélectionner l'index du li cliqué (correspondant à newIndex)
+                                $item = $mainMenuItems.eq(newIndex);
+
+                //je verif si l'index était ouvert, je dois donc le fermer
+                                if(openedIndex === newIndex){
+                //quand je clique sur img coloré de l'item ouvert ça se referme
+                                    animateItem($item, false, 250);
+                                    openedIndex=-1;
+                                }
+                                else{
+                                    if(validIndex(newIndex)){
+                                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
+                                           openedIndex =newIndex;
+                                           animateItem($item, true, 250);
+                                    }
+                                }
+
+            });
+        },
 
 
 //ouverture de la description
