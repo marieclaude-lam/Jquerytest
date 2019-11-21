@@ -40,6 +40,30 @@ $(function(){
                     }
                 }
             });
+
+            $(".button").hover(function(){
+                $(this).addClass("hovered");
+             },
+             function(){
+                $(this).removeClass("hovered");
+             }
+             );
+          $(".button").click(function(){
+            var newIndex = $(this).index();
+                $item = $mainMenuItems.eq(newIndex);
+                if(openedIndex === newIndex){
+                    animateItem($item, false, 250);
+                    openedIndex=-1;
+                }
+                else{
+                    if(validIndex(newIndex)){
+                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
+                           openedIndex =newIndex;
+                           animateItem($item, true, 250);
+                    }
+                }
+
+          });
         }
 
 

@@ -134,11 +134,10 @@ header h1{
     cursor:pointer;
     opacity:0.9;
 }
-.button:hover{
+.hovered{
     background: #b70000;
     border: 2px solid #333;
     font-size:24px;
-
 }
 
 
