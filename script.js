@@ -13,30 +13,43 @@ $(function(){
 //c'est à partir de $mainMenuItems qui répertorie tous mes li
 //grace à eq il va sélectionner l'index du li cliqué (correspondant à newIndex)
                 $item = $mainMenuItems.eq(newIndex);
-                animateItem($item, true, 250);
+
+//je verif si l'index était ouvert, je dois donc le fermer
+                if(openedIndex ===newIndex){
+                    animateItem($item, true, 250);
+                    openedIndex=-1;
+                }
+                else{
+                    if(validIndex(newIndex)){
+                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
+                           openedIndex =newIndex;
+                           animateItem($item, true, 250);
+                    }
+                }
+
 //mise à jour de la var openIndex
-                openedIndex =newIndex;
+                openedIndex = newIndex;
 
             });
 
         };
 //ouverture de la description
+// est ce l'index est valide?
+        validIndex = function(indexTocheck){
+        // indextocheck <= à 0
+        return (indexTocheck >= 0)&& (indexTocheck <= totalMainMenuItems);
+        }
 //l'item que je veux animer, toOpen=bool, la vitesse
         animateItem =function($item, toOpen, speed){
-
-            var $colorImage = $item.find(".color"),
-//toOpen est-il true or false; expression ? Valeur1 (si true) :Valeur2(si false)
+                var $colorImage = $item.find(".color"),
+//toOpen=> ouvert/fermé est-il true or false; expression ? Valeur1 (si true) :Valeur2(si false)
 //itemParam soit = à width 420px (true) width 140px(false)
-            itemParam = toOpen ?{width:"420px"}: {width:"140px"},
+                itemParam = toOpen ?{width:"420px"}: {width:"140px"},
 // quand on ouvre l'img coloré sera à 0px  sinon à 140px (dc disparait à droite)
-            colorImageParam =toOpen ? {left:"0px"} :{left:"140px"};
-
-
-
-            $colorImage.animate(colorImageParam,speed);
-            $item.animate(itemParam,speed);
-
-        };
+                colorImageParam =toOpen ? {left:"0px"} :{left:"140px"};
+                $colorImage.animate(colorImageParam,speed);
+                $item.animate(itemParam,speed);
+            };
 
         init();
 
