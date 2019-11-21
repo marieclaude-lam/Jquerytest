@@ -2,9 +2,21 @@ $(function(){
 
     var $mainMenuItems = $("#main-menu ul").children("li"),
         totalMainMenuItems = $mainMenuItems.length,
-        openedIndex = -1,
+//lorsque l'on recharge la page on veut voir l'item de jessica s'afficher
+        openedIndex = 2,
+
 
         init = function(){
+             bindEvents();
+//on vérifie si opened index est valide
+                if(validIndex(openedIndex)){
+                        animateItem($mainMenuItems.eq(openedIndex),true,700);
+
+                }
+        },
+
+
+        bindEvents =function(){
             $mainMenuItems.children(".images").click(function(){
 //je veux l'index de mon li (qui comprend l'image, la description) quand je clique sur mon image
 //car le parent de mon image est le li
@@ -15,8 +27,9 @@ $(function(){
                 $item = $mainMenuItems.eq(newIndex);
 
 //je verif si l'index était ouvert, je dois donc le fermer
-                if(openedIndex ===newIndex){
-                    animateItem($item, true, 250);
+                if(openedIndex === newIndex){
+//quand je clique sur img coloré de l'item ouvert ça se referme
+                    animateItem($item, false, 250);
                     openedIndex=-1;
                 }
                 else{
@@ -26,13 +39,10 @@ $(function(){
                            animateItem($item, true, 250);
                     }
                 }
-
-//mise à jour de la var openIndex
-                openedIndex = newIndex;
-
             });
+        }
 
-        };
+
 //ouverture de la description
 // est ce l'index est valide?
         validIndex = function(indexTocheck){
