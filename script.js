@@ -20,25 +20,12 @@ $(function(){
             $mainMenuItems.children(".images").click(function(){
 //je veux l'index de mon li (qui comprend l'image, la description) quand je clique sur mon image
 //car le parent de mon image est le li
-                var newIndex = $(this).parent().index(),
+                var newIndex = $(this).parent().index();
 //item = li sur lequel on a cliqué,
 //c'est à partir de $mainMenuItems qui répertorie tous mes li
 //grace à eq il va sélectionner l'index du li cliqué (correspondant à newIndex)
-                $item = $mainMenuItems.eq(newIndex);
+                checkAndAnimateItem(newIndex);
 
-//je verif si l'index était ouvert, je dois donc le fermer
-                if(openedIndex === newIndex){
-//quand je clique sur img coloré de l'item ouvert ça se referme
-                    animateItem($item, false, 250);
-                    openedIndex=-1;
-                }
-                else{
-                    if(validIndex(newIndex)){
-                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
-                           openedIndex =newIndex;
-                           animateItem($item, true, 250);
-                    }
-                }
             });
             $(".button").hover(
                 function(){
@@ -54,22 +41,7 @@ $(function(){
                 //item = li sur lequel on a cliqué,
                 //c'est à partir de $mainMenuItems qui répertorie tous mes li
                 //grace à eq il va sélectionner l'index du li cliqué (correspondant à newIndex)
-                                $item = $mainMenuItems.eq(newIndex);
-
-                //je verif si l'index était ouvert, je dois donc le fermer
-                                if(openedIndex === newIndex){
-                //quand je clique sur img coloré de l'item ouvert ça se referme
-                                    animateItem($item, false, 250);
-                                    openedIndex=-1;
-                                }
-                                else{
-                                    if(validIndex(newIndex)){
-                                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
-                                           openedIndex =newIndex;
-                                           animateItem($item, true, 250);
-                                    }
-                                }
-
+                checkAndAnimateItem(newIndex);
             });
         },
 
@@ -90,6 +62,23 @@ $(function(){
                 colorImageParam =toOpen ? {left:"0px"} :{left:"140px"};
                 $colorImage.animate(colorImageParam,speed);
                 $item.animate(itemParam,speed);
+            },
+
+            checkAndAnimateItem = function(indexToCheckAndAnimate){
+//je verif si l'index était ouvert, je dois donc le fermer
+                if(openedIndex === indexToCheckAndAnimate){
+//quand je clique sur img coloré de l'item ouvert ça se referme
+                    animateItem($mainMenuItems.eq(indexToCheckAndAnimate), false, 250);
+                    openedIndex=-1;
+                }
+                else{
+                    if(validIndex(indexToCheckAndAnimate)){
+                           animateItem($mainMenuItems.eq(openedIndex), false, 250);
+                           openedIndex =indexToCheckAndAnimate;
+                           animateItem($mainMenuItems.eq(openedIndex), true, 250);
+                    }
+                }
+
             };
 
         init();
